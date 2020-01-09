@@ -6,6 +6,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sass`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -13,6 +14,24 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+    resolve: 'gatsby-firesource',
+    options: {
+      credential: require("./firebase.json"),
+      types: [
+        {
+          type: 'Article',
+          collection: 'articles',
+          map: doc => ({
+            title: doc.title,
+            body: doc.body,
+            tags: doc.tags,
+            date: doc.date,
+          }),
+        },
+      ],
+    },
+  },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
