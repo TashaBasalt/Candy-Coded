@@ -26,7 +26,7 @@ const Layout = ({ children }) => {
         menuLinks={data.site.siteMetadata.menuLinks}
       />
       <div>
-        <main>{children}</main>
+        <main className="site-wrapper">{children}</main>
         <footer>
           © {new Date().getFullYear()}, Built with
           {` `}

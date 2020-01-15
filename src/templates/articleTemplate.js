@@ -2,12 +2,17 @@ import React from 'react';
 
 import Layout from "../components/layout/layout"
 
-const articleTemplate = () => {
+const articleTemplate = (props) => {
   return (
     <Layout>
-      <div>
-        Article Page
-      </div>
+      <section>
+        <h2>
+          {props.pageContext.title}
+        </h2>
+        <p>
+          {props.pageContext.body}
+        </p>
+      </section>
     </Layout>
   );
 }
