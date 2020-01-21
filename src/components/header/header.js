@@ -2,6 +2,7 @@ import { Link } from "gatsby"
 import React, { useState } from "react"
 
 import './header.scss'
+import toggle from '../../images/open.svg';
 
 function Header({ menuLinks }) {
 
@@ -21,11 +22,16 @@ function Header({ menuLinks }) {
 
   return (
     <header className="header">
-      <nav className="header__nav">
-        <button className={isVisible ? "header__menu--active" : "header__menu"}  aria-haspopup="true" aria-expanded="false" onClick={toggleVisible}>
-          <span className="header__open"></span>
-          <span className="header__close"></span>
-        </button>
+      <button
+        className={`header__menu ${isVisible ? "header__menu--expanded" : "header__menu--collapsed"}`}
+        aria-label="Site Links Menu Toggle"
+        aria-haspopup="true"
+        aria-expanded={isVisible ? "true" : "false"}
+        onClick={toggleVisible}
+      >
+        <img className="header__icon" src={toggle} alt=""/>
+      </button>
+      <nav role="navigation" className={isVisible ? "header__nav" : "header__nav--hidden"}>
         {links.map(link => (
           <span
             key={link.name}
