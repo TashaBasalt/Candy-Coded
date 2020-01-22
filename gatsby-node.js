@@ -31,3 +31,37 @@ exports.createPages = ({graphql, actions}) => {
     });
   })
 }
+
+exports.createPages = ({graphql, actions}) => {
+  const {createPage} = actions;
+  const designTemplate = path.resolve('src/templates/designTemplate.js')
+  return graphql(`
+  {
+    allDesign {
+      edges {
+        node {
+          body
+          date
+          id
+          localImage{
+            publicURL
+          }
+          title
+        }
+      }
+    }
+  }
+  `).then((result) => {
+    if(result.errors){
+      throw result.errors;
+    }
+
+    result.data.allDesign.edges.forEach(design=> {
+      createPage({
+        path: `/design/${design.node.id}`,
+        component: designTemplate,
+        context: design.node
+      })
+    });
+  })
+}

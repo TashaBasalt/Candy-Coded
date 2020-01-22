@@ -43,7 +43,33 @@ module.exports = {
               date: doc.date,
             }),
           },
+          {
+            type: 'Design',
+            collection: 'designs',
+            map: doc => ({
+              title: doc.title,
+              body: doc.body,
+              img: doc.img,
+              date: doc.date,
+            }),
+          },
+          {
+            type: 'Code',
+            collection: 'codes',
+            map: doc => ({
+              title: doc.title,
+              body: doc.body,
+              url: doc.url,
+            }),
+          },
         ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-remote-images`,
+      options: {
+        nodeType: 'Design',
+        imagePath: 'img',
       },
     },
     `gatsby-transformer-sharp`,
