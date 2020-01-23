@@ -2,6 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout/layout"
+import Img from "gatsby-image"
 
 const Design = (props) => (
   <Layout>
@@ -10,7 +11,8 @@ const Design = (props) => (
         <h2>
           {edge.node.title}
         </h2>
-        <img src={edge.node.localImage.publicURL} alt="" />
+        <Img fixed={edge.node.localImage.childImageSharp.fixed} />
+        {/* <img src={edge.node.localImage.childImageSharp.fixed} alt="" /> */}
         <Link to={`/design/${edge.node.id}`}>
           Link Test
         </Link>
@@ -28,7 +30,11 @@ export const query = graphql`
           date
           id
           localImage{
-            publicURL
+            childImageSharp{
+              fixed(width: 200){
+                ...GatsbyImageSharpFixed
+              }
+            }
           }
           title
         }

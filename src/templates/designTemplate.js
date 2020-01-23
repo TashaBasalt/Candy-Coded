@@ -1,21 +1,42 @@
 import React from 'react';
+import {graphql} from 'gatsby'
+import Img from "gatsby-image"
 
 import Layout from "../components/layout/layout"
 
 const designTemplate = (props) => {
+  console.log(props.data);
   return (
     <Layout>
       <section>
         <h2>
-          {props.pageContext.title}
+          {props.data.design.title}
         </h2>
-        <img src={props.pageContext.localImage.publicURL} alt='' />
+        <Img fixed={props.data.design.localImage.childImageSharp.fixed} />
         <p>
-          {props.pageContext.body}
+          {props.data.design.body}
         </p>
       </section>
     </Layout>
   );
 }
+
+export const query = graphql`
+  query DesignQuery($designId: String!) {
+    design(id: {eq: $designId}){
+      body
+      date
+      id
+      localImage{
+        childImageSharp{
+          fixed(width: 200){
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+      title
+    }
+  }
+`;
 
 export default designTemplate;

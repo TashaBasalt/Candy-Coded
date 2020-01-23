@@ -21,16 +21,14 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
+    <div className="site-wrapper">
       <Header 
         menuLinks={data.site.siteMetadata.menuLinks}
       />
-      <main className="site-wrapper">
-        <div className="site-wrapper__frame">
-            {children}
-        </div>
+      <main className="site-wrapper__content">
+        {children}
       </main>
-    </>
+    </div>
   )
 }
 

@@ -40,13 +40,7 @@ exports.createPages = ({graphql, actions}) => {
     allDesign {
       edges {
         node {
-          body
-          date
           id
-          localImage{
-            publicURL
-          }
-          title
         }
       }
     }
@@ -60,7 +54,7 @@ exports.createPages = ({graphql, actions}) => {
       createPage({
         path: `/design/${design.node.id}`,
         component: designTemplate,
-        context: design.node
+        context: {designId: design.node.id}
       })
     });
   })

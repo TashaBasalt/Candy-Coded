@@ -24,12 +24,15 @@ button {
 
 /* Global background images */
 
-// .site-wrapper {
-//   background: url(../../images/candy-mobile.svg) no-repeat;
-//   background-size: cover;
-//   background-position: center;
-//   height: 90vh;
-//   &__frame {
-//     padding: 5rem .5rem;
-//   }
-// }
+.site-wrapper {
+  background: url('../../images/candy-mobile.svg') no-repeat;
+  background-size: cover;
+  background-position: center;
+  &__content {
+    height: 95vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+  }
+}
