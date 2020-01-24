@@ -5,9 +5,8 @@ import Img from "gatsby-image"
 import Layout from "../components/layout/layout"
 
 const designTemplate = (props) => {
-  console.log(props.data);
   return (
-    <Layout>
+    <Layout location={props.location}>
       <section>
         <h2>
           {props.data.design.title}

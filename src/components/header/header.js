@@ -1,16 +1,15 @@
-import { Link } from "gatsby"
-import React, { useState } from "react"
+import { Link } from "gatsby";
+import React, { useState } from "react";
 
-import './header.scss'
+import './header.scss';
 import toggle from '../../images/open.svg';
 
-function Header({ menuLinks }) {
-
+function Header({ menuLinks, path }) {
   const [isVisible, setIsVisible] = useState(false);
   
   const links = menuLinks.map(link => {
-    const location = [{name: 'blog', href: '/blog'}];
-    if (location[0].href.indexOf(link.link) >= 0) {
+
+    if(path === link.link) {
       link = {name: 'home', link: '/'};
     }
     return link;

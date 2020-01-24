@@ -4,7 +4,7 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout/layout"
 
 const Blog = (props) => (
-  <Layout>
+  <Layout location={props.location}>
     {props.data.allArticle.edges.map(edge => (
       <div key={edge.node.id}>
         <h2>

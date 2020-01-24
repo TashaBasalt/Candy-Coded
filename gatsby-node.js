@@ -2,17 +2,15 @@ const path = require('path');
 
 exports.createPages = ({graphql, actions}) => {
   const {createPage} = actions;
-  const articleTemplate = path.resolve('src/templates/articleTemplate.js')
-  return graphql(`
+  const articleTemplate = path.resolve('src/templates/articleTemplate.js');
+  const designTemplate = path.resolve('src/templates/designTemplate.js');
+
+  const articles = graphql(`
   {
     allArticle {
       edges {
         node {
-          body
-          date
           id
-          tags
-          title
         }
       }
     }
@@ -26,16 +24,12 @@ exports.createPages = ({graphql, actions}) => {
       createPage({
         path: `/article/${article.node.id}`,
         component: articleTemplate,
-        context: article.node
+        context: {articleId: article.node.id}
       })
     });
-  })
-}
+  });
 
-exports.createPages = ({graphql, actions}) => {
-  const {createPage} = actions;
-  const designTemplate = path.resolve('src/templates/designTemplate.js')
-  return graphql(`
+  const designs = graphql(`
   {
     allDesign {
       edges {
@@ -57,5 +51,7 @@ exports.createPages = ({graphql, actions}) => {
         context: {designId: design.node.id}
       })
     });
-  })
+  });
+
+  return Promise.all([articles, designs]);
 }

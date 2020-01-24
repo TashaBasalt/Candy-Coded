@@ -5,7 +5,7 @@ import Layout from "../components/layout/layout"
 import Img from "gatsby-image"
 
 const Design = (props) => (
-  <Layout>
+  <Layout location={props.location}>
     {props.data.allDesign.edges.map(edge => (
       <div key={edge.node.id}>
         <h2>
